@@ -1,68 +1,74 @@
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+### react-marquee-line
 
-## Available Scripts
+React Marquee Line is a react component for running item(s) of an array of any length automatically, infinitely within one line, with configurable gap, running speed, styles.
 
-In the project directory, you can run:
+### 🎯Features
 
-### `npm start`
+1. lower pressure on rendering engine
+2. no minimum cap on the length of array and its item(s)
+3. running item itself can be React Element
+4. configurable running speed
+5. configurable and consistent gap between every two items
 
-Runs the app in the development mode.<br>
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+### 🧐Component and its props
 
-The page will reload if you make edits.<br>
-You will also see any lint errors in the console.
+```react
+  <Marquee
+    list: [], // optional, item can be either plain text or React Element
+    gear: 1, // optional, for speed control, available values are as following: 0.5, 1, 1.5, 2, 2.5
+    viewBoxStyle: {width: '100%', top: 0, left: 0, backgrounColor: '#ccc'}, // optional, for override the default styling of the visible area of this marquee
+    itemStyle: {color: 'red'}, // optional, for override the default styling of item(s)
+  />
+```
 
-### `npm test`
+**default values of props:**
 
-Launches the test runner in the interactive watch mode.<br>
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+```javascript
+Marquee.defaultProps = {
+  list: [].
+  gear: 1,
+  viewBoxStyle: {
+    width: '100%',
+    height: '30px',
+    color: '#000000',
+    border: '1px solid #ccc'
+  },
+  itemStyle: {}
+}
+```
 
-### `npm run build`
+### 🎢How to use
 
-Builds the app for production to the `build` folder.<br>
-It correctly bundles React in production mode and optimizes the build for the best performance.
+#### 1. Installation
 
-The build is minified and the filenames include the hashes.<br>
-Your app is ready to be deployed!
+Using npm:
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+```bash
+  npm install react-marquee-line
+```
 
-### `npm run eject`
+Using yarn:
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+```bash
+  yarn add react-marquee-line
+```
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+#### 2. Example
 
-Instead, it will copy all the configuration files and the transitive dependencies (Webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+```javascript
+  import Marquee from 'react-marquee-line'
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+  // prep for content of array to run
+  const template = <span onClick={() => {console.log('clicked')}}>click me</span>
+  const list = [
+    'this is the first item',
+    template
+  ]
 
-## Learn More
+  <Marquee list={list} gear={1.5} viewBoxStyle={{border: "0px", backgroundColor: "rgba(0,0,0,0.7)"}} />
+```
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+### 📝TODO
 
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/code-splitting
-
-### Analyzing the Bundle Size
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size
-
-### Making a Progressive Web App
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app
-
-### Advanced Configuration
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/advanced-configuration
-
-### Deployment
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/deployment
-
-### `npm run build` fails to minify
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify
+1. add support for vertically auto running
+2. add hover-to-pause feature

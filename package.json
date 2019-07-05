@@ -1,7 +1,11 @@
 {
   "name": "react-marquee-line",
   "version": "0.1.0",
-  "private": true,
+  "keywords": ["react", "marquee"],
+  "main": "lib/ReactKonva.js",
+  "file": [],
+  "homepage": "https://github.com/huan555/react-marquee-line",
+  "bugs": "https://github.com/huan555/react-marquee-line/issues",
   "dependencies": {
     "react": "^16.8.6",
     "react-dom": "^16.8.6",
@@ -10,8 +14,7 @@
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
-    "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "pack": ""
   },
   "eslintConfig": {
     "extends": "react-app"
@@ -27,5 +30,7 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
-  }
+  },
+  "license": "MIT"
+
 }
