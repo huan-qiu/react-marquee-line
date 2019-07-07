@@ -27,4 +27,6 @@ yarn-error.log*
 /src/App.css
 /src/App.js
 /src/index.js
+/src/test
+note.md
 

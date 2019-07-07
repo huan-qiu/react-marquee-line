@@ -63,7 +63,7 @@ const Item = props => {
 
   /* Tranlate item by `gear`px per frame automatically */
   const memorizedAutoRun = useCallback(() => {
-    function memorizedAutoRun() {
+    function AutoRun() {
       // filter out older useEffect's rAF WHY THOES CANNOT BE CLEAN UP PROPERLY
       if (!isSameArrays(activeArrayRef.current, activeArray)) {
         return false;
@@ -89,9 +89,9 @@ const Item = props => {
       }
 
       setLeft(prev => prev - gear);
-      frameRef.current = requestAnimationFrame(memorizedAutoRun);
+      frameRef.current = requestAnimationFrame(AutoRun);
     }
-    memorizedAutoRun();
+    AutoRun();
   }, [activeArray, gear, onEnterEnd, onLeaveEnd, viewBox.clientWidth]);
 
   useEffect(() => {
