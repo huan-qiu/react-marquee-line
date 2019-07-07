@@ -1,6 +1,6 @@
 {
   "name": "react-marquee-line",
-  "version": "0.1.1",
+  "version": "0.2.1",
   "license": "MIT",
   "keywords": [
     "react",
@@ -17,7 +17,6 @@
   "bugs": "https://github.com/huan555/react-marquee-line/issues",
   "dependencies": {
     "core-js": "^3.0.1",
-    "core.js": "^0.4.2",
     "prop-types": "^15.7.2",
     "react": "^16.8.6",
     "react-dom": "^16.8.6",
@@ -26,7 +25,7 @@
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
-    "prepublish": "rimraf dist && npx babel src/Marquee.js src/Item.js src/helpers.js --out-dir dist && cp src/index.css dist/index.css"
+    "prepublish": "rimraf dist && npx babel src/Marquee.js src/ViewBox.js src/Item.js src/helpers.js --out-dir dist && cp src/index.css dist/index.css"
   },
   "eslintConfig": {
     "extends": "react-app"
