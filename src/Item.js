@@ -6,7 +6,6 @@ import React, {
   useLayoutEffect
 } from 'react';
 import {
-  isSameArrays,
   getTranslateX,
   getThresholdRange,
   isInsideArray
@@ -16,8 +15,6 @@ const Item = props => {
     viewBox,
     gear,
     children,
-    activeArray,
-    idx,
     itemStyle,
     onEnterEnd,
     // onEnterStart,
@@ -29,7 +26,6 @@ const Item = props => {
   const [left, setLeft] = useState(viewBox.clientWidth + 1); // plus 1 to prevent onEnterStart event being triggered by the very first invoke
   const itemRef = useRef(null); // for accessing the correspong DOM node and read its layout info
   const frameRef = useRef(null); // for cleanning rAF purpose
-  const activeArrayRef = useRef(null); // for filter out stale rAF that unable to be cleaned up
 
   /* Range of the 4 key thresholds, comment out the 2 currently not in use */
   // const ENTER_START_REF = useRef();
@@ -61,13 +57,12 @@ const Item = props => {
     getConstants();
   }, [getConstants]);
 
-  /* Tranlate item by `gear`px per frame automatically */
+  /* Translate item by `gear`px per frame automatically */
   const memorizedAutoRun = useCallback(() => {
     function AutoRun() {
-      // filter out older useEffect's rAF WHY THOES CANNOT BE CLEAN UP PROPERLY
-      if (!isSameArrays(activeArrayRef.current, activeArray)) {
-        return false;
-      }
+      // filter out stale useEffect's rAF, came up with 2 work arounds: WHY THOES CANNOT BE CLEAN UP PROPERLY
+      cancelAnimationFrame(frameRef.current);
+
       let node = itemRef.current;
       let translateX = getTranslateX(node.style.transform);
 
@@ -79,10 +74,8 @@ const Item = props => {
       //   onLeaveStart && onLeaveStart();
       // } else
       if (isInsideArray(ENTER_END_REF.current, translateX)) {
-        // console.log('ENTER_END', idx);
         onEnterEnd && onEnterEnd();
       } else if (isInsideArray(LEAVE_END_REF.current, translateX)) {
-        // console.log('===LEAVE_END===', idx);
         setLeft(viewBox.clientWidth + 1);
         onLeaveEnd && onLeaveEnd();
         return true;
@@ -92,17 +85,17 @@ const Item = props => {
       frameRef.current = requestAnimationFrame(AutoRun);
     }
     AutoRun();
-  }, [activeArray, gear, onEnterEnd, onLeaveEnd, viewBox.clientWidth]);
+  }, [gear, onEnterEnd, onLeaveEnd, viewBox.clientWidth]);
 
+  /* Start auto run */
   useEffect(() => {
-    // Tracking the latest value of `activeArray`, for filter out stale rAF
-    activeArrayRef.current = activeArray;
     frameRef.current = requestAnimationFrame(memorizedAutoRun);
 
-    return () => {
-      cancelAnimationFrame(frameRef.current);
-    };
-  }, [activeArray, idx, memorizedAutoRun]);
+    // no need for this, this should function like what in `AutoRun` do, but turns out it is NOT.
+    // return () => {
+    //   // cancelAnimationFrame(frameRef.current);
+    // };
+  }, [memorizedAutoRun]);
 
   return (
     <div

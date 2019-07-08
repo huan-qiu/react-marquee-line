@@ -3,7 +3,6 @@ import PropTypes from 'prop-types';
 import ViewBox from './ViewBox';
 import './index.css';
 
-
 const Marquee = props => {
   return <ViewBox  {...props} key={props.list.length}></ViewBox>
 };
