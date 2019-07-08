@@ -8,8 +8,7 @@ const Marquee = props => {
   return <ViewBox  {...props} key={props.list.length}></ViewBox>
 };
 
-
-export default Marquee;
+export default React.memo(Marquee);
 
 
 Marquee.defaultProps = {
