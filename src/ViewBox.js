@@ -1,5 +1,5 @@
 import React, { useRef, useLayoutEffect, useState, useCallback } from 'react';
-import Item from './Item';
+import ItemHorizontal from './ItemHorizontal';
 import './index.css';
 import {
   getViewBoxInfo,
@@ -89,7 +89,7 @@ const ViewBox = props => {
             // get item's individual click handler if has any
             let clickConfig = itemClickRef.current[`idx${idx}`];
             return (
-              <Item
+              <ItemHorizontal
                 key={idx}
                 idx={idx}
                 viewBox={viewBox}
@@ -101,7 +101,7 @@ const ViewBox = props => {
                 onItemClick={clickConfig && clickConfig.click}
               >
                 {i}
-              </Item>
+              </ItemHorizontal>
             );
           } else {
             return null;

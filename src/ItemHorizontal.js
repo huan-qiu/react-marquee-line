@@ -10,7 +10,8 @@ import {
   getThresholdRange,
   isInsideArray
 } from './helpers';
-const Item = props => {
+
+const ItemHorizontal = props => {
   const {
     viewBox,
     gear,
@@ -109,4 +110,4 @@ const Item = props => {
   );
 };
 
-export default Item;
+export default ItemHorizontal;
