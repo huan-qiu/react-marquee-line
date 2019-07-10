@@ -1,4 +1,4 @@
-import React, { useRef, useEffect, useState, useCallback } from 'react';
+import React, { useRef, useLayoutEffect, useState, useCallback } from 'react';
 import Item from './Item';
 import './index.css';
 import {
@@ -22,7 +22,7 @@ const ViewBox = props => {
   const CLICKS_COUNT = Object.keys(itemClicks).length;
 
   /* Get layout info of ViewBox */
-  useEffect(() => {
+  useLayoutEffect(() => {
     const VIEW_BOX = getViewBoxInfo(viewBoxRef.current);
     setViewBox(VIEW_BOX);
   }, []);
