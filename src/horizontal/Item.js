@@ -5,7 +5,7 @@ import React, {
   useCallback,
   useLayoutEffect
 } from 'react';
-import { getTranslateX, getThresholdRange, isInsideArray } from '../helpers';
+import { getTranslateX, getThresholdRange, isInsideArray } from './helpers';
 
 const Item = props => {
   const {

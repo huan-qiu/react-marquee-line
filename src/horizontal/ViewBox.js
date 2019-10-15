@@ -1,6 +1,6 @@
 import React, { useRef, useLayoutEffect, useState, useCallback } from 'react';
 import Item from './Item';
-import { getLastItem } from '../helpers';
+import { getLastItem } from './helpers';
 
 const ViewBox = props => {
   /* Configuration */
