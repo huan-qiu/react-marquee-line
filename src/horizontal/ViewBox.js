@@ -1,13 +1,13 @@
 import React, { useRef, useLayoutEffect, useState, useCallback } from 'react';
 import Item from './Item';
-import { getLastItem, syncLineHeightWithHeight } from '../helpers';
+import { getLastItem } from '../helpers';
 
 const ViewBox = props => {
   /* Configuration */
   const { list, viewBoxStyle, itemStyle, gear } = props;
 
   const [protoArray, setProtoArray] = useState(list); // the processed array based on `list` for looping
-  const [activeArray, setActiveArray] = useState([0]); // keep the current activated items' idx respective to `protoArray'
+  const [activeArray, setActiveArray] = useState([0]); // keep the current activated items' idces for perf purpose
   const [viewBoxClientWidth, setViewBoxClientWidth] = useState(null);
 
   let viewBoxRef = useRef(null);
@@ -86,4 +86,4 @@ const ViewBox = props => {
   );
 };
 
-export default ViewBox;
+export default React.memo(ViewBox);

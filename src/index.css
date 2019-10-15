@@ -11,10 +11,11 @@
   display: flex;
   flex-flow: row nowrap;
   align-items: center;
-  /* white-space: nowrap; */
+  white-space: nowrap;
 }
 .react-marquee-line-item {
   left: 0;
   padding-right: 50px;
   font-size: 12px;
+  white-space: nowrap;
 }

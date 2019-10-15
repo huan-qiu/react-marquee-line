@@ -56,10 +56,11 @@ const Item = props => {
     function AutoRun() {
       // filter out stale useEffect's rAF, came up with 2 work arounds: WHY THOES CANNOT BE CLEAN UP PROPERLY
       frameRef.current && cancelAnimationFrame(frameRef.current);
-
       let node = itemRef.current;
-      let translateX = getTranslateX(node.style.transform);
+      // for the whole list being updated, old item is destroyed
+      if (!node) return false;
 
+      let translateX = getTranslateX(node.style.transform);
       // if (isInsideArray(ENTER_START_REF.current, translateX)) {
       //   // console.log('ENTER_START', idx);
       //   onEnterStart && onEnterStart();
@@ -91,11 +92,10 @@ const Item = props => {
       className="react-marquee-line react-marquee-line-item"
       ref={itemRef}
       style={{ ...itemStyle, transform: `translate(${left}px, 0)` }}
-      // onClick={onItemClick}
     >
       {children}
     </div>
   );
 };
 
-export default Item;
+export default React.memo(Item);
