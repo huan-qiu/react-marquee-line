@@ -1,14 +1,13 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import ViewBox from './ViewBox';
+import ViewBox from './horizontal/ViewBox';
 import './index.css';
 
 const Marquee = props => {
-  return <ViewBox  {...props} key={props.list.length}></ViewBox>
+  return <ViewBox {...props} key={props.list.length}></ViewBox>;
 };
 
 export default React.memo(Marquee);
-
 
 Marquee.defaultProps = {
   list: [],
@@ -19,13 +18,7 @@ Marquee.defaultProps = {
     border: '1px solid #ccc'
   },
   itemStyle: {},
-  gear: 1,
-  // not put into use
-  itemClicks: {
-    // idx0: {
-    //   click: () => {}
-    // }
-  }
+  gear: 1
 };
 
 Marquee.propTypes = {

@@ -5,26 +5,22 @@ import React, {
   useCallback,
   useLayoutEffect
 } from 'react';
-import {
-  getTranslateX,
-  getThresholdRange,
-  isInsideArray
-} from './helpers';
+import { getTranslateX, getThresholdRange, isInsideArray } from '../helpers';
 
-const ItemHorizontal = props => {
+const Item = props => {
   const {
-    viewBox,
+    viewBoxClientWidth,
     gear,
     children,
     itemStyle,
     onEnterEnd,
     // onEnterStart,
     // onLeaveStart,
-    onLeaveEnd,
-    onItemClick
+    onLeaveEnd
+    // onItemClick
   } = props;
 
-  const [left, setLeft] = useState(viewBox.clientWidth + 1); // plus 1 to prevent onEnterStart event being triggered by the very first invoke
+  const [left, setLeft] = useState(viewBoxClientWidth + 1); // plus 1 to prevent onEnterStart event being triggered by the very first invoke
   const itemRef = useRef(null); // for accessing the correspong DOM node and read its layout info
   const frameRef = useRef(null); // for cleanning rAF purpose
 
@@ -33,26 +29,23 @@ const ItemHorizontal = props => {
   // const LEAVE_START_REF = useRef();
   const ENTER_END_REF = useRef();
   const LEAVE_END_REF = useRef();
-  /* OffsetWidth of item's DOM node */
-  const ITEM_OFFSET_WIDTH_REF = useRef();
 
   /* Initialize constants */
   const getConstants = useCallback(() => {
     let node = itemRef.current;
-    ITEM_OFFSET_WIDTH_REF.current = node.offsetWidth;
-    const { clientWidth } = viewBox;
+    let nodeOffsetWidth = node.offsetWidth;
 
     // ENTER_START_REF.current = getThresholdRange(Math.ceil(clientWidth), gear);
     // LEAVE_START_REF.current = getThresholdRange(0, gear);
     ENTER_END_REF.current = getThresholdRange(
-      Math.ceil(clientWidth - ITEM_OFFSET_WIDTH_REF.current),
+      Math.ceil(viewBoxClientWidth - nodeOffsetWidth),
       gear
     );
     LEAVE_END_REF.current = getThresholdRange(
-      -Math.ceil(ITEM_OFFSET_WIDTH_REF.current),
+      -Math.ceil(nodeOffsetWidth),
       gear
     );
-  }, [gear, viewBox]);
+  }, [gear, viewBoxClientWidth]);
 
   useLayoutEffect(() => {
     getConstants();
@@ -62,7 +55,7 @@ const ItemHorizontal = props => {
   const memorizedAutoRun = useCallback(() => {
     function AutoRun() {
       // filter out stale useEffect's rAF, came up with 2 work arounds: WHY THOES CANNOT BE CLEAN UP PROPERLY
-      cancelAnimationFrame(frameRef.current);
+      frameRef.current && cancelAnimationFrame(frameRef.current);
 
       let node = itemRef.current;
       let translateX = getTranslateX(node.style.transform);
@@ -77,25 +70,20 @@ const ItemHorizontal = props => {
       if (isInsideArray(ENTER_END_REF.current, translateX)) {
         onEnterEnd && onEnterEnd();
       } else if (isInsideArray(LEAVE_END_REF.current, translateX)) {
-        setLeft(viewBox.clientWidth + 1);
+        setLeft(viewBoxClientWidth + 1);
         onLeaveEnd && onLeaveEnd();
         return true;
       }
 
       setLeft(prev => prev - gear);
-      frameRef.current = requestAnimationFrame(AutoRun);
+      frameRef.current = requestAnimationFrame(memorizedAutoRun);
     }
     AutoRun();
-  }, [gear, onEnterEnd, onLeaveEnd, viewBox.clientWidth]);
+  }, [gear, onEnterEnd, onLeaveEnd, viewBoxClientWidth]);
 
   /* Start auto run */
   useEffect(() => {
     frameRef.current = requestAnimationFrame(memorizedAutoRun);
-
-    // no need for this, this should function like what in `AutoRun` do, but turns out it is NOT.
-    // return () => {
-    //   // cancelAnimationFrame(frameRef.current);
-    // };
   }, [memorizedAutoRun]);
 
   return (
@@ -103,11 +91,11 @@ const ItemHorizontal = props => {
       className="react-marquee-line react-marquee-line-item"
       ref={itemRef}
       style={{ ...itemStyle, transform: `translate(${left}px, 0)` }}
-      onClick={onItemClick}
+      // onClick={onItemClick}
     >
       {children}
     </div>
   );
 };
 
-export default ItemHorizontal;
+export default Item;

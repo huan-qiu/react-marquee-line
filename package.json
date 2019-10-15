@@ -16,16 +16,16 @@
   "homepage": "https://github.com/huan555/react-marquee-line",
   "bugs": "https://github.com/huan555/react-marquee-line/issues",
   "dependencies": {
-    "core-js": "^3.0.1",
+    "core-js": "^3.3.2",
     "prop-types": "^15.7.2",
-    "react": "^16.8.6",
-    "react-dom": "^16.8.6",
+    "react": "^16.10.2",
+    "react-dom": "^16.10.2",
     "react-scripts": "3.0.1"
   },
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
-    "prepublish": "rimraf dist && npx babel src/Marquee.js src/ViewBox.js src/Item.js src/helpers.js --out-dir dist && cp src/index.css dist/index.css"
+    "prepublish": "rimraf dist && npx babel src/Marquee.js src/helpers.js --out-dir dist && npx babel src/horizontal --out-dir dist/horizontal &&  npx babel src/vertical --out-dir dist/vertical && cp src/index.css dist/index.css"
   },
   "eslintConfig": {
     "extends": "react-app"
@@ -46,10 +46,10 @@
     ]
   },
   "devDependencies": {
-    "@babel/cli": "^7.5.0",
-    "@babel/core": "^7.5.0",
-    "@babel/preset-env": "^7.5.0",
-    "@babel/preset-react": "^7.0.0",
-    "rimraf": "^2.6.3"
+    "@babel/cli": "^7.6.4",
+    "@babel/core": "^7.6.4",
+    "@babel/preset-env": "^7.6.3",
+    "@babel/preset-react": "^7.6.3",
+    "rimraf": "^2.7.1"
   }
 }
