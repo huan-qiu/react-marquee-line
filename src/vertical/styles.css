@@ -1,0 +1,29 @@
+.react-marquee-line {
+  box-sizing: border-box;
+}
+
+.react-marquee-line-item {
+  display: block;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
+}
+
+.react-marquee-line-itemBox {
+  opacity: 0;
+  display: flex;
+  flex-flow: column nowrap;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+  border: 2px solid red;
+  animation: fadeIn 1.5s 1;
+}

@@ -1,7 +1,11 @@
 import React from 'react';
 
 const Item = props => {
-  return <div>ddd</div>
-}
+  return (
+    <div className="react-marquee-line react-marquee-line-item">
+      {props.children}
+    </div>
+  );
+};
 
-export default Item;
+export default React.memo(Item);
