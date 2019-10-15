@@ -59,7 +59,7 @@ const ViewBox = props => {
     <div
       className="react-marquee-line react-marquee-line-viewBox"
       ref={viewBoxRef}
-      style={syncLineHeightWithHeight(viewBoxStyle)}
+      style={viewBoxStyle}
     >
       {viewBoxClientWidth &&
         protoArray.map((i, idx) => {
