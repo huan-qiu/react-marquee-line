@@ -57,7 +57,7 @@ const ViewBox = props => {
 
   return (
     <div
-      className="react-marquee-line react-marquee-line-viewBox"
+      className="react-marquee-line-hor react-marquee-line-hor-viewBox"
       ref={viewBoxRef}
       style={viewBoxStyle}
     >

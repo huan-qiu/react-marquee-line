@@ -1,6 +1,6 @@
 {
   "name": "react-marquee-line",
-  "version": "0.3.1",
+  "version": "1.0.0",
   "license": "MIT",
   "keywords": [
     "react",
@@ -12,20 +12,21 @@
   "file": [
     "/dist"
   ],
-  "main": "/dist/Marquee.js",
+  "main": "/dist/marquee.js",
   "homepage": "https://github.com/huan555/react-marquee-line",
   "bugs": "https://github.com/huan555/react-marquee-line/issues",
-  "dependencies": {
-    "core-js": "^3.3.2",
-    "prop-types": "^15.7.2",
-    "react": "^16.10.2",
-    "react-dom": "^16.10.2",
-    "react-scripts": "3.0.1"
+  "repository": {
+    "type": "git",
+    "url": "git@github.com:huan555/react-marquee-line.git"
   },
+  "dependencies": {},
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
-    "prepublish": "rimraf dist && npx babel src/Marquee.js src/helpers.js --out-dir dist && npx babel src/horizontal --out-dir dist/horizontal &&  npx babel src/vertical --out-dir dist/vertical && cp src/index.css dist/index.css"
+    "clean": "rimraf dist",
+    "babel": "npx babel src --out-dir dist",
+    "cp-css": "cp src/horizontal/index.css dist/horizontal/index.css && cp src/vertical/index.css dist/vertical/index.css",
+    "prepublish": "npm run clean && npm run babel && npm run cp-css"
   },
   "eslintConfig": {
     "extends": "react-app"
@@ -33,23 +34,20 @@
   "eslintIgnore": [
     "/dist"
   ],
-  "browserslist": {
-    "production": [
-      ">0.2%",
-      "not dead",
-      "not op_mini all"
-    ],
-    "development": [
-      "last 1 chrome version",
-      "last 1 firefox version",
-      "last 1 safari version"
-    ]
-  },
   "devDependencies": {
     "@babel/cli": "^7.6.4",
     "@babel/core": "^7.6.4",
     "@babel/preset-env": "^7.6.3",
     "@babel/preset-react": "^7.6.3",
+    "prop-types": "^15.7.2",
+    "react": "^16.10.2",
+    "react-dom": "^16.10.2",
+    "react-scripts": "^3.2.0",
     "rimraf": "^2.7.1"
+  },
+  "peerDependencies": {
+    "prop-types": "^15.7.2",
+    "react": "^16.10.2",
+    "react-dom": "^16.10.2"
   }
 }

@@ -89,7 +89,7 @@ const Item = props => {
 
   return (
     <div
-      className="react-marquee-line react-marquee-line-item"
+      className="react-marquee-line-hor react-marquee-line-hor-item"
       ref={itemRef}
       style={{ ...itemStyle, transform: `translate(${left}px, 0)` }}
     >

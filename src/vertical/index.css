@@ -1,8 +1,8 @@
-.react-marquee-line {
+.react-marquee-line-ver {
   box-sizing: border-box;
 }
 
-.react-marquee-line-item {
+.react-marquee-line-ver-item {
   display: block;
 }
 
@@ -16,7 +16,7 @@
   }
 }
 
-.react-marquee-line-itemBox {
+.react-marquee-line-ver-itemBox {
   opacity: 0;
   display: flex;
   flex-flow: column nowrap;

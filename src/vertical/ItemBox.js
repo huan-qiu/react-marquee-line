@@ -1,6 +1,6 @@
 import React, { useState, useRef, useEffect, useCallback } from 'react';
 import Item from './Item';
-import './styles.css';
+import './index.css';
 import { getTranslateY } from './helpers';
 
 const ItemBox = props => {
@@ -44,7 +44,7 @@ const ItemBox = props => {
   return (
     <div
       ref={itemBoxRef}
-      className="react-marquee-line react-marquee-line-itemBox"
+      className="react-marquee-line-ver react-marquee-line-ver-itemBox"
       style={{ transform: `translateY(${y}%)`, opacity }}
     >
       {subList.map((item, idx) => {

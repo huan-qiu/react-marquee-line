@@ -3,12 +3,10 @@
     [
       "@babel/preset-env",
       {
-        "useBuiltIns": "usage",
-        "corejs": 3,
-        "modules": false,
-        "exclude": ["transform-typeof-symbol"],
-      },
+        "modules": "auto"
+      }
     ],
     "@babel/preset-react"
   ],
+  "ignore": ["src/App.js", "src/index.js"]
 }

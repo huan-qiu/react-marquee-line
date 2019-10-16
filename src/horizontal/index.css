@@ -1,9 +1,9 @@
-.react-marquee-line {
+.react-marquee-line-hor {
   position: absolute;
   display: inline-block;
   box-sizing: border-box;
 }
-.react-marquee-line-viewBox {
+.react-marquee-line-hor-viewBox {
   top: 0;
   left: 0;
   width: 100%;
@@ -13,7 +13,7 @@
   align-items: center;
   white-space: nowrap;
 }
-.react-marquee-line-item {
+.react-marquee-line-hor-item {
   left: 0;
   padding-right: 50px;
   font-size: 12px;

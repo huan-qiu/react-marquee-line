@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import ViewBox from './ViewBox';
-import './styles.css';
+import './index.css';
 
 const MarqueeHor = props => {
   // `key` for updating list

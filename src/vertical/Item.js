@@ -2,7 +2,7 @@ import React from 'react';
 
 const Item = props => {
   return (
-    <div className="react-marquee-line react-marquee-line-item">
+    <div className="react-marquee-line-ver react-marquee-line-ver-item">
       {props.children}
     </div>
   );
