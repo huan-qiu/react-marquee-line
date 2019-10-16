@@ -23,6 +23,7 @@ yarn-debug.log*
 yarn-error.log*
 
 /dist
+/public
 /src/App.css
 /src/App.js
 /src/index.js
