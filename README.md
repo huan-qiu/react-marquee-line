@@ -2,13 +2,14 @@
 
 React Marquee Line is a react component for running item(s) of an array of any length automatically, infinitely within one line, with configurable gap, running speed, styles.
 
-### 🎯Features
+### 🍾 Features
 
 1. lower pressure on rendering engine
 2. no minimum cap on the length of array and its item(s)
 3. running item itself can be React Element
 4. configurable running speed
 5. configurable and consistent gap between every two items
+6. support marquee movement in 2 directions, both vertical and horizontal
 
 ### 🧐Component and its props
 
@@ -70,5 +71,8 @@ Using yarn:
 
 ### 📝TODO
 
-1. add support for vertically auto running
+~~1. add support for vertically auto running~~✅
+
 2. add hover-to-pause feature
+3. update this readme.md for direction of vertical marquee
+4. add live demo
