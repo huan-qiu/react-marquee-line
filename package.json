@@ -9,7 +9,7 @@
   "author": {
     "name": "Huan555"
   },
-  "file": [
+  "files": [
     "/dist"
   ],
   "main": "/dist/marquee.js",

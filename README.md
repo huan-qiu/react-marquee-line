@@ -1,46 +1,21 @@
 ### react-marquee-line
 
-React Marquee Line is a react component for running item(s) of an array of any length automatically, infinitely within one line, with configurable gap, running speed, styles.
+React Marquee Line is a react component that can be used for creating a horizontal-scrolling-board-like effect, or a vertically fade in and fade up effect.
 
 ### 🍾 Features
 
 1. lower pressure on rendering engine
-2. no minimum cap on the length of array and its item(s)
-3. running item itself can be React Element
-4. configurable running speed
-5. configurable and consistent gap between every two items
-6. support marquee movement in 2 directions, both vertical and horizontal
+2. running item itself can be a React Element or a string
+3. configurable running speed
+4. configurable directions, vertical and horizontal
 
-### 🧐Component and its props
+### 🏄🏻‍♀️Demo
 
-```react
-  <Marquee
-    list: [], // optional, item can be either plain text or React Element
-    gear: 1, // optional, for speed control, available values are as following: 0.5, 1, 1.5, 2, 2.5
-    viewBoxStyle: {width: '100%', top: 0, left: 0, backgrounColor: '#ccc'}, // optional, for override the default styling of the visible area of this marquee
-    itemStyle: {color: 'red'}, // optional, for override the default styling of item(s)
-  />
-```
+coming soon... I promise.
 
-**default values of props:**
+### 🎢 How to use
 
-```javascript
-Marquee.defaultProps = {
-  list: [].
-  gear: 1,
-  viewBoxStyle: {
-    width: '100%',
-    height: '30px',
-    color: '#000000',
-    border: '1px solid #ccc'
-  },
-  itemStyle: {}
-}
-```
-
-### 🎢How to use
-
-#### 1. Installation
+#### Step 1. Installation
 
 Using npm:
 
@@ -54,25 +29,70 @@ Using yarn:
   yarn add react-marquee-line
 ```
 
-#### 2. Example
+#### Step 2. Import `Marquee`
+
+```javascript
+import Marquee from 'react-marquee-line';
+```
+
+#### Step 3: Pass down your list, and other config that suit your need
+
+1. using horizontal marquee
 
 ```javascript
   import Marquee from 'react-marquee-line'
 
-  // prep for content of array to run
-  const template = <span onClick={() => {console.log('clicked')}}>click me</span>
-  const list = [
-    'this is the first item',
-    template
-  ]
+  // create an react element that has onClick handler, sorry for the long name
+  const someReactElemYouCanClick = <span>
+      <a href="https://codesandbox.io">Click me </a> for more details
+    </span>
 
-  <Marquee list={list} gear={1.5} viewBoxStyle={{border: "0px", backgroundColor: "rgba(0,0,0,0.7)"}} />
+  // set a list your want it to run
+  const list = [
+    'the 1st running item',
+    someReactElemYouCanClick,
+    'the 2rd running item'
+  ]
+  // pass the list to Marquee, you are good to go
+  <Marquee list={list}/>
 ```
+
+2. using vertical marquee
+
+```javascript
+  import Marquee from 'react-marquee-line'
+
+  // create an react element that has onClick handler, sorry for the long name
+  const someReactElemYouCanClick = <span>
+      <a href="https://codesandbox.io">Click me </a> for more details
+    </span>
+
+  // set a list your want it to run
+  const list = [
+    'the 1st running item',
+    someReactElemYouCanClick,
+    'the 2rd running item'
+  ]
+  // pass the list to Marquee, and set `direction`, easy-peasy
+  <Marquee list={list} direction='vertical'/>
+```
+
+### configurable properties for `<Marquee />`
+
+| properties name | descriptionn                                                                                            | type   | default value | belongs to which direction |
+| --------------- | ------------------------------------------------------------------------------------------------------- | ------ | ------------- | -------------------------- |
+| list            | the list whose items you want them to run                                                               | Array  | []            | both                       |
+| direction       | to specify which direction you want marquee to run, available values: 'horizontal', 'vertical'          | String | 'horizontal'  | both                       |
+| lines           | vertical only, specify how many lines of item you want to show at one time                              | Number | 1             | vertical                   |
+| gear            | horizontal only, the horizontal running speed control for marquee, available values are: 1, 1.5, 2, 2.5 | Number | 1.5           | horizontal                 |
+
+### Want to overwrite styles of `<Marquee />` ?
+
+Good chance you need this, and you should actually, 'cause the default styles for this `<Marquee />` is way too spartan.
+To overwrite its styles, you can simply import a .css file that has your ideal styles after the import of `<Marquee />`.
+As for the selectors specific for this `<Marquee />`, you can find them at the Elements Panel of dev tool; find those classname prefixed with 'react-marquee-line-'
 
 ### 📝TODO
 
-~~1. add support for vertically auto running~~✅
-
-2. add hover-to-pause feature
-3. update this readme.md for direction of vertical marquee
-4. add live demo
+1. add live demo
+2. add validation for prop passed in
